@@ -45,22 +45,22 @@ pipeline{
                 sh """./${params.FILE_NAME}"""
             }
         }
-        stage('Sending an artifact to Prod'){
-            steps{
-			    // Настройки плагина Publish Over SSH
-                sshPublisher(
-                             publishers: [
-                                 sshPublisherDesc(
-                                     configName: "serafim2",
-                                     transfers: [
-                                        sshTransfer(sourceFiles: "${params.FILE_NAME}")
-                                     ]
-                                 )
-                             ]
+	stage('Sending an artifact to Prod') {
+	 steps {
+           // Настройки плагина Publish Over SSH
+           sshPublisher(
+           	publishers: [
+                 sshPublisherDesc(
+                   configName: "proger",
+                   transfers: [
+                     sshTransfer(sourceFiles: "${WORKSPACE}/${params.FILE_NAME}", remoteDirectory: "/home/proger")
+                    ]
                 )
-            }
-        }
+            ]
+        )
     }
+}
+
     post{
         success{
             echo 'You can go home'
