@@ -51,7 +51,7 @@ pipeline{
                 sshPublisher(
                              publishers: [
                                  sshPublisherDesc(
-                                     configName: "proger",
+                                     configName: "serafim2",
                                      transfers: [
                                         sshTransfer(sourceFiles: "${params.FILE_NAME}")
                                      ]
